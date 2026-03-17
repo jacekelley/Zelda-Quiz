@@ -1,5 +1,3 @@
-// main.js - only difficulty selection functionality
-
 const diffChoices = document.querySelector('.diffchoices');
 const startButtonContainer = document.querySelector('#startbutton');
 let selectedDifficulty = null;
@@ -86,8 +84,8 @@ if (quizContainer) {
   let waitingForNext = false; // flag to prevent multiple clicks during feedback display
 
   function shuffleArray(array) {
-    for (let i = array.length -1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i +1));
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
       [array[i], array[j]] = [array[j], array[i]];
     }
   }
@@ -220,16 +218,16 @@ if (quizContainer) {
   }
 
   const skipButton = document.querySelector('#skip');
-if (skipButton) {
-  skipButton.addEventListener('click', () => {
-    currentQuestionIndex++;
-    if (currentQuestionIndex >= selectedQuestions.length) {
-      showFinalScore();
-    } else {
-      showQuestion();
-    }
-  });
-}
+  if (skipButton) {
+    skipButton.addEventListener('click', () => {
+      currentQuestionIndex++;
+      if (currentQuestionIndex >= selectedQuestions.length) {
+        showFinalScore();
+      } else {
+        showQuestion();
+      }
+    });
+  }
 
   // Initialize score display
   if (scoreElement) {
