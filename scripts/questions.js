@@ -450,7 +450,7 @@ const hardQuestions = [
         answer: "A Link to the Past"
     },
     {
-        question: "In 'Ocarina of Time', which item must Link use to prove his connection to the Royal Family to the composer brothers?",
+        question: "In 'Ocarina of Time', what must Link use to prove his connection to the Royal Family to the composer brothers?",
         options: ["The Ocarina of Time", "Zelda's Lullaby", "The Goron's Ruby", "The Hylian Shield"],
         answer: "Zelda's Lullaby"
     },

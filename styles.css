@@ -280,11 +280,11 @@ footer {
 }
 
 #answers button:hover{
-	background:blue;
+	background: #1f3d2b;
 }
 
 #answers button.selected{
-	background:blue;
+	background:#1f3d2b;
 }
 
 #quiz-info {
@@ -307,25 +307,15 @@ footer {
 	padding: 15px 40px;
 	border: none;
 	border-radius: 8px;
+	box-shadow:2px 2px 10px black;
 	cursor: pointer;
 	margin-top: 30px;
-	position: relative;
-	transition: filter 0.3s ease, box-shadow 0.3s ease;
+	/* position: relative; */
 }
 
 #next:hover {
 	scale:1.05;
 }
-
-#next:hover::before,
-#next:hover::after {
-	opacity: 1;
-}
-
-#next:focus {
-	outline: none;
-	box-shadow: 0 0 12px #c6a539;
-} 
 
 #try-again{
 	height:100px;
