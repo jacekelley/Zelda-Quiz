@@ -6,7 +6,6 @@ if (diffChoices && startButtonContainer) {
   const buttons = diffChoices.querySelectorAll('button');
   const startButton = startButtonContainer.querySelector('button');
 
-  // Select difficulty and highlight button
   buttons.forEach(button => {
     button.addEventListener('click', () => {
       if (button.classList.contains('selected')) {
@@ -15,12 +14,11 @@ if (diffChoices && startButtonContainer) {
       } else {
         buttons.forEach(btn => btn.classList.remove('selected'));
         button.classList.add('selected');
-        selectedDifficulty = button.dataset.difficulty; // 'easy' or 'hard'
+        selectedDifficulty = button.dataset.difficulty; 
       }
     });
   });
 
-  // Start button navigates to quiz page and stores difficulty
   startButton.addEventListener('click', () => {
     if (selectedDifficulty) {
       localStorage.setItem('quizDifficulty', selectedDifficulty);
@@ -31,7 +29,6 @@ if (diffChoices && startButtonContainer) {
   });
 }
 
-// Additional logic for quiz page
 const quizContainer = document.querySelector('#quiz-container');
 if (quizContainer) {
   const storedDifficulty = localStorage.getItem('quizDifficulty');
@@ -52,7 +49,6 @@ if (quizContainer) {
   const scoreElement = document.querySelector('#score');
   const quizInfoElement = document.querySelector('#quiz-info');
 
-  // Create feedback element for "Correct!" or "Incorrect!"
   let feedbackElement = document.querySelector('#feedback');
   if (!feedbackElement) {
     feedbackElement = document.createElement('div');
@@ -66,7 +62,6 @@ if (quizContainer) {
   }
   feedbackElement.textContent = '';
 
-  // Select up to 10 unique random questions
   let selectedQuestions = [];
   if (quizQuestions.length <= 10) {
     selectedQuestions = quizQuestions.slice();
@@ -81,7 +76,7 @@ if (quizContainer) {
   let currentQuestionIndex = 0;
   let score = 0;
   let currentQuestion = null;
-  let waitingForNext = false; // flag to prevent multiple clicks during feedback display
+  let waitingForNext = false;
 
   function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -107,10 +102,8 @@ if (quizContainer) {
     if (questionElement && answersContainer) {
       questionElement.textContent = currentQuestion.question;
 
-      // Clear previous options
       answersContainer.innerHTML = '';
 
-      // Shuffle options
       const shuffledOptions = currentQuestion.options.slice();
       shuffleArray(shuffledOptions);
 
@@ -120,8 +113,7 @@ if (quizContainer) {
         optionButton.textContent = option;
 
         optionButton.addEventListener('click', () => {
-          if (waitingForNext) return; // prevent selection change during feedback display
-          // Toggle selected class on clicked button, ensuring only one selected at a time
+          if (waitingForNext) return; 
           const allOptionButtons = answersContainer.querySelectorAll('button');
           if (optionButton.classList.contains('selected')) {
             optionButton.classList.remove('selected');
@@ -149,7 +141,7 @@ if (quizContainer) {
       if (quizInfoElement) {
         quizInfoElement.textContent = `Quiz complete! Final Score: ${score} / ${selectedQuestions.length}`;
       }
-      // Create "Try Again" button
+      // Create "Try Again" button for testing
       let tryAgainButton = document.querySelector('#try-again');
       if (!tryAgainButton) {
         tryAgainButton = document.createElement('button');
@@ -157,7 +149,6 @@ if (quizContainer) {
         tryAgainButton.type = 'button';
         tryAgainButton.textContent = 'Try Again';
 
-        // Style the button similar to nextButton
         const nextButtonStyles = window.getComputedStyle(nextButton);
         tryAgainButton.style.cssText = nextButton.style.cssText;
         tryAgainButton.style.display = 'inline-block';
@@ -187,7 +178,6 @@ if (quizContainer) {
 
       waitingForNext = true;
 
-      // Check if selected answer is correct
       const isCorrect = selectedOption.textContent === currentQuestion.answer;
       if (isCorrect) {
         score++;
@@ -205,7 +195,6 @@ if (quizContainer) {
         quizInfoElement.textContent = `Question ${currentQuestionIndex + 1} of ${selectedQuestions.length} | Score: ${score}`;
       }
 
-      // After 1 second, move to next question
       setTimeout(() => {
         currentQuestionIndex++;
         if (currentQuestionIndex >= selectedQuestions.length) {
@@ -229,11 +218,9 @@ if (quizContainer) {
     });
   }
 
-  // Initialize score display
   if (scoreElement) {
     scoreElement.textContent = `Score: 0 / ${selectedQuestions.length}`;
   }
 
-  // Start quiz with first question
   showQuestion();
 }
